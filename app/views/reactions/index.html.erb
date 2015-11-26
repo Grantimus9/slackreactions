@@ -1,0 +1,20 @@
+<div class="row col-md-10 col-md-offset-1">
+  <div class="row">
+      <p id="notice"><%= notice %></p>
+  </div>
+  <div class="row">
+    <h1><%= current_user.name %>'s Reactions</h1>
+  </div>
+  <div class="row">
+    <div class="col-md-2">
+      <%= link_to 'New Reaction', new_reaction_path %>
+    </div>
+    <div class="col-md-10">
+        <h2>Search bar Here</h2>
+    </div>
+  </div>
+  <div class="row">
+    <%= render partial: "reactionbox", collection: @reactions, as: :reaction %>
+  </div>
+
+</div>

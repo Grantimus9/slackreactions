@@ -1,3 +1,5 @@
 # Config for Google Sign-In
-google_oauth2_key:  'your-key-it-probably-ends-in-apps.googleusercontent.com'
-google_oauth2_secret: 'your-secret-from-google'
+google_client_id:  'your-key-it-probably-ends-in-apps.googleusercontent.com'
+google_client_secret: 'your-secret-from-google'
+
+admin_email: "your_admin@yourcompany.com"

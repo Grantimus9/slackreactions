@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+ruby '2.2.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
 # Use postgresql as the database for Active Record
@@ -26,9 +26,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Handles Authentication with Google
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
-
-# Background Processing
-gem 'sidekiq'
 
 gem 'figaro' #figaro for environment variables
 

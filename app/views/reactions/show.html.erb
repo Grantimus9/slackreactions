@@ -1,0 +1,10 @@
+<div class="row col-md-12">
+  <p id="notice"><%= notice %></p>
+</div>
+<div class="row">
+  <%= render partial: "reactionbox", locals: {reaction: @reaction} %>
+</div>
+<div class="row">
+  <%= link_to 'Edit', edit_reaction_path(@reaction) %> |
+  <%= link_to 'Back', reactions_path %>
+</div>
