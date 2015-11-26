@@ -1,0 +1,16 @@
+== Reactions
+
+= Introduction
+
+This is a small app that lets you and your team curate your own library of gifs and photos to insert into your conversations
+similar to using the slashie command /giphy. It was originally made because it was more fun than studying for my law school finals.
+
+= Take it for a Spin!
+Deploy to Heroku using the one-click "Deploy to Heroku" feature. All you need to do is set the environment variables to suit your team
+and you're good to go.
+
+= ENV variables to define:
+The project uses Figaro, so you can define all of these in application.yml. You can use application.yml-sample as your guide.
+
+= Run it Locally
+You'll need Postgresql running locally. I recommend this app: http://postgresapp.com/
