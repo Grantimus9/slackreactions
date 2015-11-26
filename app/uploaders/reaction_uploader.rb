@@ -7,13 +7,16 @@ class ReactionUploader < CarrierWave::Uploader::Base
   # include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
-  storage :file
-  # storage :fog
+  # storage :file
+  storage :fog
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
-    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    # "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    # This works for the file storage as well as Amazon S3 and Rackspace Cloud Files.
+    # Define store_dir as nil if you'd like to store files at the root level.
+    nil
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
