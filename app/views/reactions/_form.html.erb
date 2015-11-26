@@ -17,16 +17,17 @@
       <%= f.text_field :url, class:"form-control" %>
     </div>
     <div class="row" id="img_preview">
+      <%= image_tag(@reaction.url) if @reaction.url %>
     </div>
     <div class="row">
-      If your image or gif does not appear above after hitting tab, make sure the URL is valid (include http://www.)
+      If your image or gif does not appear above after hitting tab, make sure the URL is valid (include http:// and/or www.)
     </div>
     <div class="row">
-      <%= f.label :keywords, "Keywords for this image. Put phrases in quotes" %><br>
-      <%= f.text_area :keywords, cols:"70", rows:"5", class:'form-control' %>
+      <%= f.label :keywords, "Keywords for this image. Separate keywords or phrases with commas" %><br>
+      <%= f.text_area :keywords, cols:"70", rows:"5", class:'form-control', value: @reaction.keywords_pretty %>
     </div>
     <div class="row">
-      <%= f.submit "Create Reaction", class:'btn btn-primary' %>
+      <%= f.submit "Submit", class:'btn btn-primary' %>
     </div>
   <% end %>
 </div>

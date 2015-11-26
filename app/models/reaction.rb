@@ -19,7 +19,7 @@ class Reaction < ActiveRecord::Base
   end
 
   def keywords_pretty
-    keywords.gsub('"', "").gsub("[", "").gsub("]", "")
+    keywords.to_s.gsub(/["\[\]]/, "")
   end
 
   def downcase_url

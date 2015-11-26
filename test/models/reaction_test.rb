@@ -35,6 +35,19 @@ class ReactionTest < ActiveSupport::TestCase
     assert @reaction.url = "http://www.imgur.com/token.jpg"
   end
 
+  test "it makes sure that format_keywords_to_a and keywords_pretty are inverses of each other" do
+    @reaction = Reaction.new
+    @user_input = "help, me, 'obi wan', Kenobi, you're, my, only, hope"
+    @reaction.format_keywords_to_a(@user_input)
+    @initial_keywords = @reaction.keywords
+
+    # Now simulate user not changing anything - it should still save/pass
+    @user_input_2 = @reaction.keywords_pretty
+    @reaction.format_keywords_to_a(@user_input_2)
+    assert @initial_keywords == @reaction.keywords, "Failed to save without changes."
+  end
+
+  
 
 
 end
