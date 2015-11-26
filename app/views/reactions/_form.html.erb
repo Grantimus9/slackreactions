@@ -13,11 +13,15 @@
       <% end %>
     </div>
     <div class="row">
-      <%= f.label :url, "URL of GIF or Image" %><br>
-      <%= f.text_field :url, class:"form-control" %>
+      <%= f.file_field :image, class:'form-control' %><br>
+      <%= f.hidden_field :image_cache %>
+    </div>
+    <div class="row">
+      <%= f.label :remote_image_url, "URL of the image" %>
+      <%= f.text_field :remote_image_url %>
     </div>
     <div class="row" id="img_preview">
-      <%= image_tag(@reaction.url) if @reaction.url %>
+      <%= image_tag(@reaction.image_url) if @reaction.image? %>
     </div>
     <div class="row">
       If your image or gif does not appear above after hitting tab, make sure the URL is valid (include http:// and/or www.)

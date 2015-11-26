@@ -2,6 +2,9 @@ class Reaction < ActiveRecord::Base
 
   before_validation :downcase_url
 
+  # Carrierwave
+  mount_uploader :image, ReactionUploader
+
   belongs_to :user
 
   # Called from the controller, formats the user-inputted block of text into

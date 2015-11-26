@@ -2,4 +2,9 @@
 google_client_id:  'your-key-it-probably-ends-in-apps.googleusercontent.com'
 google_client_secret: 'your-secret-from-google'
 
+google_storage_access_key_id: 'your-storage-bucket-access-key-id'
+google_storage_secret_access_key: 'your-storage-bucket-secret-access-key'
+
+
+
 admin_email: "your_admin@yourcompany.com"
