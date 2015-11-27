@@ -1,6 +1,7 @@
 <div class="row">
   <%= reaction.url %>
-  <%= reaction.keywords %> 
+  <%= reaction.keywords %>
+  <%= image_tag reaction.image_url %>
   <%= link_to 'Show', reaction %>
   <%= link_to 'Edit', edit_reaction_path(reaction) %>
   <%= link_to 'Destroy', reaction, method: :delete, data: { confirm: 'Are you sure?' } %>

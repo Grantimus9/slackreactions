@@ -4,7 +4,7 @@
 Figaro.require_keys(
   "google_client_id",
   "google_client_secret",
-  "google_storage_access_key_id",
-  "google_storage_secret_access_key",
+  "s3_key_id",
+  "s3_secret",
   "admin_email"
   )

@@ -26,7 +26,7 @@ class ReactionsController < ApplicationController
   def create
     @reaction = Reaction.new
     @reaction.format_keywords_to_a(reaction_params[:keywords])
-    @reaction.url = reaction_params[:url]
+    @reaction.image = reaction_params[:image]
 
     respond_to do |format|
       if @reaction.save
@@ -43,7 +43,7 @@ class ReactionsController < ApplicationController
   # PATCH/PUT /reactions/1.json
   def update
     @reaction.format_keywords_to_a(reaction_params[:keywords])
-    @reaction.url = reaction_params[:url]
+    @reaction.image = reaction_params[:image]
     respond_to do |format|
       if @reaction.save
         format.html { redirect_to @reaction, notice: 'Reaction was successfully updated.' }
@@ -73,6 +73,6 @@ class ReactionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def reaction_params
-      params.require(:reaction).permit(:url, :keywords)
+      params.require(:reaction).permit(:url, :keywords, :image)
     end
 end

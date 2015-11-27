@@ -29,7 +29,9 @@ gem 'omniauth-google-oauth2'
 
 # Handles image uploading and storage
 gem 'fog'
+gem 'mini_magick'
 gem 'carrierwave'
+
 
 gem 'figaro' #figaro for environment variables
 
