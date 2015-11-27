@@ -5,8 +5,9 @@ class Reaction < ActiveRecord::Base
 
   belongs_to :user
 
-
-
-
+  # Rely on the Sunspot Solr gem/system to handle this
+  searchable do
+    text :keywords
+  end
 
 end

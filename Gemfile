@@ -23,16 +23,20 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
+gem 'figaro' #figaro for environment variables
+
 # Handles User Authentication with Google
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 
-# Handles image uploading and storage
+# Handles image uploading, resizing, and storage
 gem 'fog'
 gem 'mini_magick'
 gem 'carrierwave'
 
-gem 'figaro' #figaro for environment variables
+# Handles searching
+gem 'sunspot_rails'
+gem 'sunspot_solr'
 
 group :production do
   gem 'unicorn', '4.8.3' #Unicorn for Heroku in production. for large amounts of traffic.
