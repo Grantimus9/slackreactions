@@ -47,7 +47,7 @@ class ReactionTest < ActiveSupport::TestCase
     assert @initial_keywords == @reaction.keywords, "Failed to save without changes."
   end
 
-  
+
 
 
 end

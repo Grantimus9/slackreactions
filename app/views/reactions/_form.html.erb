@@ -21,7 +21,7 @@
       <%= f.text_field :remote_image_url, class:'form-control' %>
     </div>
     <div class="row" id="img_preview">
-      <%= image_tag(@reaction.image_url) if @reaction.image? %>
+      <%= image_tag(@reaction.image_url(:thumb)) if @reaction.image? %>
     </div>
     <div class="row">
       If your image or gif does not appear above after hitting tab, make sure the URL is valid (include http:// and/or www.)
