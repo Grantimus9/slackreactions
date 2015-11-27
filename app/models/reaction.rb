@@ -7,6 +7,15 @@ class Reaction < ActiveRecord::Base
 
   belongs_to :user
 
+  def self.search(search)
+    if search
+      find(:all, :conditions => ['keywords LIKE ?', "%#{search}%"])
+
+    else
+      find(:all)
+    end
+  end
+
   # Called from the controller, formats the user-inputted block of text into
   # array of words
   def format_keywords_to_a(input_text)

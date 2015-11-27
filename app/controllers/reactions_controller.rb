@@ -4,7 +4,7 @@ class ReactionsController < ApplicationController
   # GET /reactions
   # GET /reactions.json
   def index
-    @reactions = Reaction.all
+    @reactions = Reaction.search(params[:search])
   end
 
   # GET /reactions/new
