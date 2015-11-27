@@ -24,6 +24,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'figaro' #figaro for environment variables
+gem 'will_paginate', '~> 3.0.6' # Easy pagination
 
 # Handles User Authentication with Google
 gem 'omniauth'

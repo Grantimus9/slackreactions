@@ -15,6 +15,7 @@
   </div>
   <div class="row">
     <%= render partial: "reactionbox", collection: @reactions, as: :reaction %>
+    <%= will_paginate @reactions %> 
   </div>
 
 </div>

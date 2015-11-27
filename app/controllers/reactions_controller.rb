@@ -12,7 +12,7 @@ class ReactionsController < ApplicationController
       fulltext params[:search]
     end
 
-    @reactions = @search.results
+    @reactions = Reaction.where(id: @search.results.map(&:id)).paginate(page: params[:page], :per_page => 30)
   end
 
   # GET /reactions/new
