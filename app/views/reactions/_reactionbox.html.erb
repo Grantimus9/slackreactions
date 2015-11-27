@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row reaction_box">
   <%= form_for reaction, :html => {:multipart => true} do |f| %>
     <div class="col-md-2">
         <%= image_tag reaction.image_url(:thumb), class:"img-responsive" if reaction.image? %>
@@ -12,14 +12,14 @@
           <%= f.text_area :keywords, cols:"40", rows:"3", class:'form-control', value: reaction.keywords_pretty %>
         </div>
         <div class="col-md-4">
-          <%= link_to 'Show', reaction %>
-          <%= link_to 'Edit', edit_reaction_path(reaction) %>
-          <%= link_to 'Destroy', reaction, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <%= f.submit "Update", class:'btn btn-primary' %>
+          <% end %>
+          <%= button_to 'Destroy', reaction, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
         </div>
       </div>
       <div class="row bottom_row">
         URL: <%= link_to "#{reaction.image_url}", reaction.image_url %>
       </div>
     </div>
-  <% end %>
+
 </div>

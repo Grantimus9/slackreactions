@@ -7,18 +7,9 @@ class ReactionsController < ApplicationController
     @reactions = Reaction.all
   end
 
-  # GET /reactions/1
-  # GET /reactions/1.json
-  def show
-  end
-
   # GET /reactions/new
   def new
     @reaction = Reaction.new
-  end
-
-  # GET /reactions/1/edit
-  def edit
   end
 
   # POST /reactions
@@ -27,10 +18,11 @@ class ReactionsController < ApplicationController
     @reaction = Reaction.new
     @reaction.format_keywords_to_a(reaction_params[:keywords])
     @reaction.image = reaction_params[:image]
+    @reaction.remote_image_url = reaction_params[:remote_image_url]
 
     respond_to do |format|
       if @reaction.save
-        format.html { redirect_to @reaction, notice: 'Reaction was successfully created.' }
+        format.html { redirect_to reactions_url, notice: 'Reaction was successfully created.' }
         format.json { render :show, status: :created, location: @reaction }
       else
         format.html { render :new }
@@ -46,7 +38,7 @@ class ReactionsController < ApplicationController
     @reaction.image = reaction_params[:image]
     respond_to do |format|
       if @reaction.save
-        format.html { redirect_to @reaction, notice: 'Reaction was successfully updated.' }
+        format.html { redirect_to reactions_url, notice: 'Reaction was successfully updated.' }
         format.json { render :show, status: :ok, location: @reaction }
       else
         format.html { render :edit }
@@ -73,6 +65,6 @@ class ReactionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def reaction_params
-      params.require(:reaction).permit(:url, :keywords, :image)
+      params.require(:reaction).permit(:url, :keywords, :image, :remote_image_url)
     end
 end

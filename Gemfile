@@ -32,7 +32,6 @@ gem 'fog'
 gem 'mini_magick'
 gem 'carrierwave'
 
-
 gem 'figaro' #figaro for environment variables
 
 group :production do

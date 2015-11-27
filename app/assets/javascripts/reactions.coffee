@@ -10,4 +10,3 @@ $(document).on 'page:change', ->
     img = $('<img />', {src : img_url});
     $('#img_preview').empty()
     img.appendTo('#img_preview')
-    
