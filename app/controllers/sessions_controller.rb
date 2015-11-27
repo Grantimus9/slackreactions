@@ -1,5 +1,8 @@
 class SessionsController < ApplicationController
 
+  # Skip cancancan authorization check for this controller.
+  skip_authorization_check
+
   def new
     #This is the hard to fix redirect
     redirect_to '/auth/google_oauth2'

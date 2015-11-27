@@ -29,6 +29,9 @@ gem 'figaro' #figaro for environment variables
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 
+# Handles ability for admin v mere plebian users
+gem 'cancancan', '~> 1.10'
+
 # Handles image uploading, resizing, and storage
 gem 'fog'
 gem 'mini_magick'

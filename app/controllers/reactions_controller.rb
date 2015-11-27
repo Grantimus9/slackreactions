@@ -1,4 +1,8 @@
 class ReactionsController < ApplicationController
+
+  # cancancan
+  load_and_authorize_resource
+
   before_action :set_reaction, only: [:show, :edit, :update, :destroy]
 
   # GET /reactions
