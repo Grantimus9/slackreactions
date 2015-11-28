@@ -21,11 +21,12 @@ admin_email:
 Then:
 `rake db:migrate`
 
-
 == ENV variables to define:
 The project uses Figaro, so you can define all of these in application.yml. You can use application.yml-sample as your guide.
 Once you set the variables in application.yml, you can set them on Heroku en masse:
 `figaro heroku:set -e production`
+
+Run `rake post_install_task` to make sure trigram is installed for the pg_search gem, which handles the searching of the gif inventory.
 
 ==External Config:
 
