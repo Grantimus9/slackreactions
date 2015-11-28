@@ -39,8 +39,7 @@ gem 'mini_magick'
 gem 'carrierwave'
 
 # Handles searching
-gem 'sunspot_rails'
-gem 'sunspot_solr'
+gem 'pg_search'
 
 group :production do
   gem 'unicorn', '4.8.3' #Unicorn for Heroku in production. for large amounts of traffic.
