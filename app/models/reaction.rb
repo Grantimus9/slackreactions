@@ -15,8 +15,6 @@ class Reaction < ActiveRecord::Base
   mount_uploader :image, ReactionUploader
 
   belongs_to :user
-  before_save :downcase_keywords
-
 
   # Find and return a single response to POST to Slack
   def self.return_to_slack(text)
@@ -32,9 +30,5 @@ class Reaction < ActiveRecord::Base
     @response
   end
 
-  def downcase_keywords
-    @keywords = self.keywords
-    self.update_attribute(:keywords, @keywords.downcase)
-  end
 
 end
