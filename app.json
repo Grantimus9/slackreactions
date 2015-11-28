@@ -1,0 +1,7 @@
+{
+  "name": "Slack Reactions",
+  "description": "A rails barebones replacement for the /giphy command using your teams custom library of images and gifs",
+  "repository": "https://github.com/Grantimus9/slackreactions",
+  "logo": "",
+  "keywords": ["rails", "giphy", "slack"]
+}

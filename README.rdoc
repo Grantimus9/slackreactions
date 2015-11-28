@@ -6,8 +6,11 @@ This is a small app that lets you and your team curate your own library of gifs 
 similar to using the slashie command /giphy. It was originally made because it was more fun than studying for my law school finals.
 
 == Take it for a Spin!
-Deploy to Heroku using the one-click "Deploy to Heroku" feature. All you need to do is set the environment variables to suit your team
-and you're good to go.
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
+After you deploy to Heroku by clicking the button above, you must supply the proper ENV variables. It deploys with Heroku with dummy variables,
+so you can find the keys under the app's config.
+
 
 == ENV variables to define:
 The project uses Figaro, so you can define all of these in application.yml. You can use application.yml-sample as your guide.
