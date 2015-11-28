@@ -17,8 +17,8 @@ class SlackController < ApplicationController
     params[:text]
     params[:response_url]
 
-    if params[:team_domain] != ENV['slack_domain']
-      render :status => :forbidden, :text => "403 Forbidden: Wrong Slack Team"
+    if params[:token] != ENV['slack_team_token']
+      render :status => :forbidden, :text => "403 Forbidden: Wrong Slack Team or token"
       return
     end
 

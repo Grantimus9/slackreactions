@@ -35,8 +35,8 @@
       "description": "Email address of your admin account",
       "value": "replace_me@your_company.com"
     },
-    "slack_domain": {
-      "description": "thispartoftheurl.slack.com when you're on Slacks website",
+    "slack_team_token": {
+      "description": "When you configure a new slash command in Slack youll get this",
       "value": "replace_me"
     }
   }

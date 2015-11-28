@@ -8,5 +8,5 @@ Figaro.require_keys(
   "s3_secret",
   "s3_bucket_name",
   "admin_email",
-  "slack_domain"
+  "slack_team_token"
   )
