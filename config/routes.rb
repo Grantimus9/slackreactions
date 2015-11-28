@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   resources :users
   resources :reactions
 
+  # Slacks incoming requests
+  post '/incoming' => 'slack#incoming'
+
   # Omniauth And Google OAUTH Callbacks
   get '/auth/:provider/callback' => 'sessions#create'
   get '/signin' => 'sessions#new', :as => :signin
