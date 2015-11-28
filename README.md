@@ -18,6 +18,10 @@ s3_bucket_name:
 s3_region:
 admin_email:
 
+Then:
+`rake db:migrate`
+
+
 == ENV variables to define:
 The project uses Figaro, so you can define all of these in application.yml. You can use application.yml-sample as your guide.
 Once you set the variables in application.yml, you can set them on Heroku en masse:
