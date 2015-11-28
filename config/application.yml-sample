@@ -12,5 +12,6 @@ s3_region: 'us-east-1'
 # Config for your implementation of the app.
 admin_email: "admin@website.com"
 
-# The domain of your slack team. thispart.slack.com when you're logged in to your team on the web
-slack_domain: "yourdomain"
+# Token Slack sends to identify the source of the request. You get this when you
+# create the slashie command at this URL https://yourdomain.slack.com/services/new/slash-commands.
+slack_team_token: "your_slack_token"

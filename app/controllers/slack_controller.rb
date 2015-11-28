@@ -7,15 +7,15 @@ class SlackController < ApplicationController
 
   def incoming
     # These are the incoming params POSTed from Slack
-    params[:token]
-    params[:team_id]
-    params[:channel_id]
-    params[:channel_name]
-    params[:user_id]
-    params[:user_name]
-    params[:command]
-    params[:text]
-    params[:response_url]
+    # params[:token]
+    # params[:team_id]
+    # params[:channel_id]
+    # params[:channel_name]
+    # params[:user_id]
+    # params[:user_name]
+    # params[:command]
+    # params[:text]
+    # params[:response_url]
 
     if params[:token] != ENV['slack_team_token']
       render :status => :forbidden, :text => "403 Forbidden: Wrong Slack Team or token"
@@ -28,12 +28,9 @@ class SlackController < ApplicationController
       # Reply with basic JSON.
       render json: {
         response_type: "in_channel",
-        text: params[:text],
-        team_domain: params[:team_domain],
-        env_slack_domain: ENV['slack_domain'],
         attachments: [
           {
-            fallback: "Fallback Text",
+            fallback: "#{params[:text]}",
             image_url: @response.image_url
           }
         ]
