@@ -5,6 +5,9 @@ class SlackController < ApplicationController
   # Skip Rails' check for authenticity tokens
   skip_before_action :verify_authenticity_token
 
+  # Verify it's from the right team.
+  before_action :verify_slack_team
+
   def incoming
     # These are the incoming params POSTed from Slack
     # params[:token]
@@ -17,36 +20,76 @@ class SlackController < ApplicationController
     # params[:text]
     # params[:response_url]
 
+    case
+    # starts with Add or add : The user is trying to add a gif to the library from Slack
+    # with the syntax "/r add url_of_image keywords keywords keywords"
+    when params[:text].match(/^add/i)
+
+      # Make sure user has an account with the app already, and that the app knows which account the params[:user_name] is associated with.
+      @user = User.find_by(slack_username: params[:user_name])
+      if !@user || @user.slack_user_name.empty?
+        render text: "You need to login and confirm your slack username here: #{request.base_url} before you can add reactions from within Slack."
+        return
+      end
+
+      # Create the Reaction belonging to the @user, first by parsing the input text into the pieces.
+      text = params[:text].sub(/add\s/i, "") # Remove prefix 'add'
+      url = text.strip.match(/([^\s]+)/)[0] # grab first 'word' before a space (The URL)
+      keywords = text.sub(url, "").strip # grab everything after the URL and remove preceding/trailing spaces
+
+      @reaction = @user.reactions.create( remote_image_url: url, keywords: keywords )
+
+      if @reaction.save
+        render json: {
+          text: "Successfully added image with keywords: #{@reaction.keywords}",
+          attachments: [
+            {
+              fallback: "Successfully Added Image",
+              image_url: @reaction.image_url
+            }
+          ]
+        }.to_json
+      else
+        render text: "Couldn't save that - is it the right format and URL? Try uploading it here: #{request.base_url}"
+      end
+
+      render text: "Trying to add a gif? try here: #{request.base_url}"
+      return
+    else
+      # Reaction model has the gif search and choosing logic.
+      @response = Reaction.return_to_slack(params[:text])
+
+      if @response
+        # Reply with basic JSON.
+        render json: {
+          response_type: "in_channel",
+          attachments: [
+            {
+              fallback: "#{params[:text]}",
+              image_url: @response.image_url
+            }
+          ]
+        }.to_json
+      else
+        render text: "No Match. Try adding one: #{request.base_url}"
+      end
+
+      # Log the request and whether it worked out.
+      @matched = @response.nil?
+      Request.create!(
+              text: params[:text],
+              matched: @matched,
+              requesting_user: params[:user_name]
+              )
+    end
+
+  end
+
+  def verify_slack_team
     if params[:token] != ENV['slack_team_token']
       render :status => :forbidden, :text => "403 Forbidden: Wrong Slack Team or token"
       return
     end
-
-    @response = Reaction.return_to_slack(params[:text])
-
-    if @response
-      # Reply with basic JSON.
-      render json: {
-        response_type: "in_channel",
-        attachments: [
-          {
-            fallback: "#{params[:text]}",
-            image_url: @response.image_url
-          }
-        ]
-      }.to_json
-    else
-      render text: "No Match. Try adding one."
-    end
-
-    # Log the request and whether it worked out.
-    @matched = @response.nil?
-    Request.create!(
-            text: params[:text],
-            matched: @matched,
-            requesting_user: params[:user_name]
-            )
-
   end
 
 end
