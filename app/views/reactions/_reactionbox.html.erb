@@ -1,0 +1,25 @@
+<div class="row reaction_box">
+  <%= form_for reaction, :html => {:multipart => true} do |f| %>
+    <div class="col-md-2">
+        <%= image_tag reaction.image_url(:thumb), class:"img-responsive" if reaction.image? %>
+    </div>
+    <div class="col-md-10">
+      <div class="row">
+        <b>Keywords</b> (separate with commas)
+      </div>
+      <div class="row">
+        <div class="col-md-8">
+          <%= f.text_area :keywords, cols:"40", rows:"3", class:'form-control' %>
+        </div>
+        <div class="col-md-4">
+          <%= f.submit "Update", class:'btn btn-primary' %>
+          <% end %>
+          <%= button_to 'Destroy', reaction, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+        </div>
+      </div>
+      <div class="row bottom_row">
+        URL: <%= link_to "#{reaction.image_url}", reaction.image_url %>
+      </div>
+    </div>
+
+</div>
