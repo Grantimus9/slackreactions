@@ -3,5 +3,34 @@
   "description": "A rails barebones replacement for the /giphy command using your teams custom library of images and gifs",
   "repository": "https://github.com/Grantimus9/slackreactions",
   "logo": "",
-  "keywords": ["rails", "giphy", "slack"]
+  "keywords": ["rails", "giphy", "slack"],
+  "env": {
+    "google_client_id": {
+      "description": "Google-supplied client-id for your app",
+      "value": "replace_me"
+    },
+    "google_client_secret": {
+      "description": "Google-supplied secret",
+      "value": "replace_me"
+    },
+    "s3_key_id": {
+      "description": "Amazon S3 Key ID",
+      "value": "replace_me"
+    },
+    "s3_secret": {
+      "description": "Amazon S3 Secret",
+      "value": "replace_me"
+    },
+    "s3_bucket_name": {
+      "description": "The name of the bucket you created on Amazon to hold these silly gifs",
+      "value": "replace_me"
+    },
+    "s3_region": {
+      "description": "The region - highly recommended for performance, and probably us-east-1",
+      "value": "replace_me"
+    },
+    "admin_email": {
+      "description": "Email address of your admin account",
+      "value": "replace_me@your_company.com"
+    },
 }
