@@ -6,6 +6,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :email
       t.string :uid
       t.string :role
+      t.integer :reactions_count, default: 0
 
       t.timestamps null: false
     end

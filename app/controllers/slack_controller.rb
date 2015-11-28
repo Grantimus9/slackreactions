@@ -36,7 +36,7 @@ class SlackController < ApplicationController
         ]
       }.to_json
     else
-      render text: "No Match. Try adding one at #{Rails.root}"
+      render text: "No Match. Try adding one."
     end
 
     # Log the request and whether it worked out.
