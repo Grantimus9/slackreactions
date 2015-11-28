@@ -53,8 +53,28 @@ class SlackController < ApplicationController
         render text: "Couldn't save that - is it the right format and URL? Try uploading it here: #{request.base_url}"
       end
 
-      render text: "Trying to add a gif? try here: #{request.base_url}"
-      return
+    # Case: User is confirming their slack username by sending their @user.confirm_code with
+    # the syntax '/r confirm myconfirmcode'
+    when params[:text].match(/^confirm/i)
+
+      code = params[:text].sub(/confirm\s/i, "").strip # Remove prefix 'confirm' and strip to only get the code.
+
+      # Make sure the user has an account.
+      @user = User.find_by(slack_username: params[:user_name])
+      if !@user
+        render text: "You need to create an account here: #{request.base_url} first"
+        return
+      end
+
+      if @user.confirm_code == code
+        @user.slack_user_name = params[:user_name]
+        @user.save!
+        render text: "Awesome: Your username #{params[:user_name]} is now linked with account #{@user.email}. You can now use '/r add URL keywords' to add images and keywords from within Slack"
+      else
+        render text: "That doesn't match. Please Try Again"
+      end
+
+    # If it doesn't match a command keyword, it's a gif request.
     else
       # Reaction model has the gif search and choosing logic.
       @response = Reaction.return_to_slack(params[:text])

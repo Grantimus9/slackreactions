@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_many :reactions
 
+  before_create :create_confirm_code
 
   def self.create_with_omniauth(auth)
     create! do |user|
@@ -21,6 +22,10 @@ class User < ActiveRecord::Base
     role == "admin"
   end
 
+  # Chance of a collision is exceedingly low.
+  def create_confirm_code
+    self.confirm_code = SecureRandom.urlsafe_base64(5)
+  end
 
 
 end

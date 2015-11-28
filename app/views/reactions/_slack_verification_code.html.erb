@@ -1,0 +1,10 @@
+<% if current_user.slack_user_name.blank? %>
+  <div class="row">
+    Slack Verification code (send this using /r confirm thecode to confirm your slack username): <%= current_user.confirm_code %>
+  </div>
+<% else %>
+  <div class="row">
+    Your Slack username is confirmed as <%= current_user.slack_user_name %>. <br>
+    You can type "/r add url-of-gif.com/awesomegif.gif keyword keyword keyword" to add a gif without leaving Slack. <br>
+  </div>
+<% end %>
