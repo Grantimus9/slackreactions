@@ -34,6 +34,10 @@
     "admin_email": {
       "description": "Email address of your admin account",
       "value": "replace_me@your_company.com"
+    },
+    "slack_domain": {
+      "description": "thispartoftheurl.slack.com when you're on Slacks website",
+      "value": "replace_me"
     }
   }
 }

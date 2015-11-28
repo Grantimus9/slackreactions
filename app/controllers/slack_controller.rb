@@ -9,7 +9,6 @@ class SlackController < ApplicationController
     # These are the incoming params POSTed from Slack
     params[:token]
     params[:team_id]
-    params[:team_domain]
     params[:channel_id]
     params[:channel_name]
     params[:user_id]
@@ -18,11 +17,10 @@ class SlackController < ApplicationController
     params[:text]
     params[:response_url]
 
-    @search = Reaction.search do
-      fulltext params[:text]
+    if params[:team_domain] != ENV['slack_domain']
+      render :status => :forbidden, :text => "403 Forbidden: Wrong Slack Team"
+      return
     end
-
-    @reactions = @search.results
 
     @response = Reaction.return_to_slack(params[:text])
 
@@ -32,6 +30,7 @@ class SlackController < ApplicationController
         response_type: "in_channel",
         text: params[:text],
         team_domain: params[:team_domain],
+        env_slack_domain: ENV['slack_domain'],
         attachments: [
           {
             fallback: "Fallback Text",

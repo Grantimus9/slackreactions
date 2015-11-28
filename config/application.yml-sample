@@ -11,3 +11,6 @@ s3_region: 'us-east-1'
 
 # Config for your implementation of the app.
 admin_email: "admin@website.com"
+
+# The domain of your slack team. thispart.slack.com when you're logged in to your team on the web
+slack_domain: "yourdomain"

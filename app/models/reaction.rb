@@ -21,10 +21,8 @@ class Reaction < ActiveRecord::Base
   # Find and return a single response to POST to Slack
   def self.return_to_slack(text)
     text.downcase!
-    @search = Reaction.search do
-      fulltext text
-    end
-    @reactions = @search.results
+
+    @reactions = Reaction.search_any_word_trigram(text)
 
     return nil if @reactions.nil?
 
