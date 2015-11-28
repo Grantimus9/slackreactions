@@ -6,5 +6,6 @@ Figaro.require_keys(
   "google_client_secret",
   "s3_key_id",
   "s3_secret",
+  "s3_bucket_name",
   "admin_email"
   )

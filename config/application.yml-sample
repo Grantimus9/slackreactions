@@ -1,10 +1,13 @@
-# Config for Google Sign-In
-google_client_id:  'your-key-it-probably-ends-in-apps.googleusercontent.com'
-google_client_secret: 'your-secret-from-google'
+# Config for Google Sign-In. To Get these keys go to console.developers.google.com and create
+# your own project, select login with google API (probably under Google+) and get the credentials for
+# an oauth project.
+google_client_id:  'blah-blahgoogleusercontent.com'
+google_client_secret: 'GOOGLECLIENTSECRET'
 
-google_storage_access_key_id: 'your-storage-bucket-access-key-id'
-google_storage_secret_access_key: 'your-storage-bucket-secret-access-key'
+s3_key_id: 'S3KEYID'
+s3_secret: 'S3SECRET'
+s3_bucket_name: 'my-bucket-on-s3-name'
+s3_region: 'us-east-1'
 
-
-
-admin_email: "your_admin@yourcompany.com"
+# Config for your implementation of the app.
+admin_email: "admin@website.com"
