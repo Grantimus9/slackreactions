@@ -35,7 +35,7 @@ class Reaction < ActiveRecord::Base
   end
 
   def downcase_keywords
-    keywords.downcase
+    self.update_attribute(:keywords, self.keywords.downcase)
   end
 
 end
