@@ -39,6 +39,14 @@ class SlackController < ApplicationController
       render text: "No Match"
     end
 
+    # Log the request and whether it worked out.
+    @matched = @response.nil?
+    Request.create!(
+            text: params[:text],
+            matched: @matched,
+            requesting_user: params[:user_name]
+            )
+
   end
 
 end

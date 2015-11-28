@@ -9,6 +9,7 @@ class Ability
         can :manage, :all
       else
         can :manage, Reaction, :user_id => user.id
+        can :read, Request
       end
 
     #

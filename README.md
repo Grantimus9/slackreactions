@@ -57,6 +57,6 @@ Note: The app will fail to even start if it's missing a required ENV var. Make s
 
 ## How it works:
 
-Your team visits the app you just setup, logs in, and can upload a gif or other image from their computer or by providing a URL to the image (`carrierwave` handles this). It's saved to your S3 Bucket, and the uploader can supply text keywords that they want to associate with that image.  
+Your team visits the app you just setup, logs in, and can upload a gif or other image either from their computer or from a URL (`carrierwave` handles this). It's saved to your S3 Bucket, and the uploader can supply text keywords that they want to associate with that image.  
 
-When someone invokes your /r command, Slack POSTs a payload to the /incoming route, handled by slack_controller#incoming. It uses the text field as the search term, and searches the Reaction model using the `pg_search` gem. It will return a single random Reaction object from your team's collection, and pass it back to Slack.
+When someone invokes your /r command, Slack POSTs a payload to the /incoming route, handled by slack_controller#incoming. It uses the text field as the search term, and searches the Reaction model using the `pg_search` gem. If it finds several matches, it'll choose a random one from the set of matches and return it to Slack. If it finds no matches, it'll return a message only you can see that simply says no match. 

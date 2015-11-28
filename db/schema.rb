@@ -11,10 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151126094132) do
+ActiveRecord::Schema.define(version: 20151128090801) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "pg_trgm"
 
   create_table "reactions", force: :cascade do |t|
     t.string   "image"
@@ -25,14 +26,23 @@ ActiveRecord::Schema.define(version: 20151126094132) do
     t.datetime "updated_at",             null: false
   end
 
+  create_table "requests", force: :cascade do |t|
+    t.string   "text"
+    t.boolean  "matched"
+    t.string   "requesting_user"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "provider"
     t.string   "email"
     t.string   "uid"
     t.string   "role"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.integer  "reactions_count", default: 0
   end
 
 end

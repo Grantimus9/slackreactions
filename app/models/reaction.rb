@@ -14,7 +14,7 @@ class Reaction < ActiveRecord::Base
   # Carrierwave
   mount_uploader :image, ReactionUploader
 
-  belongs_to :user
+  belongs_to :user, :counter_cache => true
 
   # Find and return a single response to POST to Slack
   def self.return_to_slack(text)

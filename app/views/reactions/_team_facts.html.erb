@@ -1,0 +1,20 @@
+<div class="row text-center">
+  <div class="row">
+    Reactions in Gallery: <%= @total_team_reactions %>
+  </div>
+  <div class="row">
+    Reactions You've Submitted: <%= @user_reactions %>
+  </div>
+  <div class="row">
+    Top Submitters:
+    <% @top_submitters.each do |user| %>
+      <%= user.name %> with <%= user.reactions.count %>,
+    <% end %>
+  </div>
+  <div class="row">
+    Top Requesters:
+    <% @top_requesters.each do |user| %>
+      <%= user[0] %> with <%= user[1] %>, 
+    <% end %>
+  </div>
+</div>

@@ -16,6 +16,14 @@ class ReactionsController < ApplicationController
       @reactions = Reaction.search_any_word_trigram(params[:search]).paginate(page: params[:page], :per_page => 30)
     end
 
+    # Team Facts
+    @total_team_reactions = Reaction.count
+    @user_reactions = Reaction.where(:user_id => current_user.id).count
+
+    @top_submitters = User.order( "reactions_count desc" ).limit(3).all
+    @top_requesters = Request.top_requesters
+
+
   end
 
   # GET /reactions/new
