@@ -8,6 +8,7 @@ similar to using the slashie command /giphy. It was originally made because it w
 == Take it for a Spin!
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
+
 After you deploy to Heroku by clicking the button above, you will be prompted for the following ENV variables:
 google_client_id:
 google_client_secret:
