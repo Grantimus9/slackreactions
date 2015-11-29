@@ -41,7 +41,7 @@ class SlackController < ApplicationController
       render json: {
         username: "Reaction Bot",
         icon_emoji: ":simple_smile:",
-        text: "Adding image with keywords: #{keywords}",
+        text: "Adding image with keywords: #{keywords} \n If you do not see the image here it won't succeed. Make sure \n you supplied a URL directly to the image, not a webpage.",
         attachments: [
           {
             fallback: "Image to Add",
