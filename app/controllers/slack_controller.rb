@@ -26,7 +26,7 @@ class SlackController < ApplicationController
     when params[:text].match(/^add/i)
 
       # Make sure user has an account with the app already, and that the app knows which account the params[:user_name] is associated with.
-      @user = User.find_by(slack_username: params[:user_name])
+      @user = User.find_by(slack_user_name: params[:user_name])
       if !@user || @user.slack_user_name.empty?
         render text: "You need to login and confirm your slack username here: #{request.base_url} before you can add reactions from within Slack."
         return
@@ -59,19 +59,14 @@ class SlackController < ApplicationController
 
       code = params[:text].sub(/confirm\s/i, "").strip # Remove prefix 'confirm' and strip to only get the code.
 
-      # Make sure the user has an account.
-      @user = User.find_by(slack_username: params[:user_name])
+      # Get use by code.
+      @user = User.find_by(confirm_code: code)
       if !@user
-        render text: "You need to create an account here: #{request.base_url} first"
-        return
-      end
-
-      if @user.confirm_code == code
+        render text: "No Match With that code. Please Check it and try it again."
+      else
         @user.slack_user_name = params[:user_name]
         @user.save!
         render text: "Awesome: Your username #{params[:user_name]} is now linked with account #{@user.email}. You can now use '/r add URL keywords' to add images and keywords from within Slack"
-      else
-        render text: "That doesn't match. Please Try Again"
       end
 
     # If it doesn't match a command keyword, it's a gif request.
