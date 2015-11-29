@@ -24,10 +24,9 @@
       <%= image_tag(@reaction.image_url(:thumb)) if @reaction.image? %>
     </div>
     <div class="row">
-      If your image or gif does not appear above after hitting tab, make sure the URL is valid (include http:// and/or www.)
     </div>
     <div class="row">
-      <%= f.label :keywords, "Keywords for this image. Separate keywords or phrases with commas" %><br>
+      <%= f.label :keywords, "Keywords for this image." %><br>
       <%= f.text_area :keywords, cols:"70", rows:"5", class:'form-control' %>
     </div>
     <div class="row">
