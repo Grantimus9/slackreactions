@@ -10,10 +10,10 @@ class ReactionsController < ApplicationController
   def index
 
     if params[:search].nil? || params[:search].empty?
-      @reactions = Reaction.where(user_id: current_user.id).all.paginate(page: params[:page], :per_page => 30)
+      @reactions = Reaction.where(user_id: current_user.id).all.paginate(page: params[:page], :per_page => 5)
     else
       # @reactions = Reaction.where(id: Reaction.search_any_word_trigram(params[:search]).map(&:id)).paginate(page: params[:page], :per_page => 30)
-      @reactions = Reaction.search_any_word_trigram(params[:search]).paginate(page: params[:page], :per_page => 30)
+      @reactions = Reaction.search_any_word_trigram(params[:search]).paginate(page: params[:page], :per_page => 5)
     end
 
     # Team Facts
