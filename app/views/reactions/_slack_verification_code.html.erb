@@ -1,10 +1,15 @@
 <% if current_user.slack_user_name.blank? %>
   <div class="row">
-    Slack Verification code (send this using /r confirm thecode to confirm your slack username): <%= current_user.confirm_code %>
+    Confirm Code: <%= current_user.confirm_code %><br>
+    <%= image_tag("confirm_code_instructions.png", width:"300") %><br>
+    Type in your confirm code as shown above to unlock additional features like adding
+    reactions to your collection without leaving Slack.
   </div>
 <% else %>
   <div class="row">
-    Your Slack username is confirmed as <%= current_user.slack_user_name %>. <br>
-    You can type "/r add url-of-gif.com/awesomegif.gif keyword keyword keyword" to add a gif without leaving Slack. <br>
+    To Add A GIF Without Leaving Slack, use the "add" keyword: <br>
+    Just type "/r add url_of_the_image word word word" and it will automatically add it to your collection
+    with the keywords after the URL.<br>
+    <%= image_tag("add_code_instructions.png", width:"600") %><br>
   </div>
 <% end %>
