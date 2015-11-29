@@ -38,7 +38,8 @@ class ReactionsController < ApplicationController
 
     respond_to do |format|
       if @reaction.save
-        format.html { redirect_to reactions_url, flash[:notice] = 'Reaction was successfully created.' }
+        flash[:success] = 'Nice!'
+        format.html { redirect_to reactions_url }
         format.json { render :show, status: :created, location: @reaction }
       else
         format.html { render :new }
@@ -52,7 +53,7 @@ class ReactionsController < ApplicationController
   def update
     respond_to do |format|
       if @reaction.update(reaction_params)
-        flash[:success] = 'Reaction was successfully updated.'
+        flash[:success] = 'Nice!'
         format.html { redirect_to reactions_url }
         format.json { render :show, status: :ok, location: @reaction }
       else
@@ -67,7 +68,8 @@ class ReactionsController < ApplicationController
   def destroy
     @reaction.destroy
     respond_to do |format|
-      format.html { redirect_to reactions_url, flash[:notice] = 'Reaction was successfully destroyed.' }
+      flash[:notice] = 'Boom!'
+      format.html { redirect_to reactions_url }
       format.json { head :no_content }
     end
   end
