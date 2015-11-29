@@ -37,24 +37,22 @@ class SlackController < ApplicationController
       url = text.strip.match(/([^\s]+)/)[0] # grab first 'word' before a space (The URL)
       keywords = text.sub(url, "").strip # grab everything after the URL and remove preceding/trailing spaces
 
-      # The following takes way too long and needs to be deferred to a Sidekiq process to keep the total
-      # response time under the Slack API mandated 3000ms.
+      # Optimistically respond with a message saying it will probably get done.
+      render json: {
+        text: "Adding image with keywords: #{keywords}",
+        attachments: [
+          {
+            fallback: "Image to Add",
+            image_url: url
+          }
+        ]
+      }.to_json
 
-
-      @reaction = @user.reactions.new( remote_image_url: url, keywords: keywords )
-      if @reaction.save
-        render json: {
-          text: "Successfully added image with keywords: #{keywords}",
-          attachments: [
-            {
-              fallback: "Successfully Added Image",
-              image_url: url
-            }
-          ]
-        }.to_json
-      else
-        render text: "Couldn't save that - is it the right format and URL? Try uploading it here: #{request.base_url}"
-      end
+      # Attempt to save the reaction to the database.
+      Thread.new {
+        @reaction = @user.reactions.new( keywords: keywords, remote_image_url: url )
+        @reaction.save!
+       }
 
     # Case: User is confirming their slack username by sending their @user.confirm_code with
     # the syntax '/r confirm myconfirmcode'
