@@ -14,7 +14,7 @@ It assumes that you've already got an Amazon S3 bucket setup where you can stash
 
 ## Take it for a Spin!
 
-Collect these ENV variables then click the Deploy to Heroku button below. You'll be prompted for the variables then it will be live.
+Collect these ENV variables then click the Deploy to Heroku button below. Heroku will prompt you for them.
 * google_client_id:
 * google_client_secret:
 * s3_key_id:
@@ -25,11 +25,6 @@ Collect these ENV variables then click the Deploy to Heroku button below. You'll
 * slack_team_token:
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
-
-If the postdeploy script on Heroku doesn't run, you'll need to run it manually:
-`heroku run rake post_install_task`
-
-The task is safe to run repeatedly.
 
 ## Clone and Deploy Yourself
 
@@ -62,3 +57,5 @@ Note: The app will fail to even start if it's missing a required ENV var. Make s
 Your team visits the app you just setup, logs in, and can upload a gif or other image either from their computer or from a URL (`carrierwave` handles this). It's saved to your S3 Bucket, and the uploader can supply text keywords that they want to associate with that image.  
 
 When someone invokes your /r command, Slack POSTs a payload to the /incoming route, handled by slack_controller#incoming. It uses the text field as the search term, and searches the Reaction model using the `pg_search` gem. If it finds several matches, it'll choose a random one from the set of matches and return it to Slack. If it finds no matches, it'll return a message only you can see that simply says no match.
+
+Your team can also submit images to their collection from within slack by typing `/r add url word word word` where `url` is the URL of an image or GIF, and every word after the URL is a keyword you want to associate with that image. Because Slack sends the Slack username (not email address), the app will prompt the user to confirm their Slack username pairs up with an account on the Reaction app if they have not done so already.  
