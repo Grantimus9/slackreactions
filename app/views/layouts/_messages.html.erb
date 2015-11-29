@@ -1,0 +1,16 @@
+<div style="position:absolute; left: 0; top: 0; width:100%; z-index:5" id="flash_msg">
+  <% flash.each do |name, msg| %>
+    <% if name == "success" %>
+      <%= image_tag("success.gif", size:"100x100") %>
+    <% end %>
+    <% if name == "failure" %>
+      <%= image_tag("fail.gif", size:"100x100") %> <%= msg %>
+    <% end %>
+  <% end %>
+</div>
+
+<script type="text/javascript">
+  setTimeout(function(){
+    $('#flash_msg').slideUp(300);
+  }, 3000);
+</script>
