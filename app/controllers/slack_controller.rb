@@ -28,7 +28,7 @@ class SlackController < ApplicationController
       # Make sure user has an account with the app already, and that the app knows which account the params[:user_name] is associated with.
       @user = User.find_by(slack_user_name: params[:user_name])
       if !@user || @user.slack_user_name.empty?
-        render text: "You need to login and confirm your slack username here: #{request.base_url} before you can add reactions from within Slack."
+        render text: "You need to first send your confirm code. Visit #{request.base_url} and check the bottom of the screen for instructions."
         return
       end
 
@@ -37,15 +37,18 @@ class SlackController < ApplicationController
       url = text.strip.match(/([^\s]+)/)[0] # grab first 'word' before a space (The URL)
       keywords = text.sub(url, "").strip # grab everything after the URL and remove preceding/trailing spaces
 
-      @reaction = @user.reactions.create( remote_image_url: url, keywords: keywords )
+      # The following takes way too long and needs to be deferred to a Sidekiq process to keep the total
+      # response time under the Slack API mandated 3000ms.
 
+
+      @reaction = @user.reactions.new( remote_image_url: url, keywords: keywords )
       if @reaction.save
         render json: {
-          text: "Successfully added image with keywords: #{@reaction.keywords}",
+          text: "Successfully added image with keywords: #{keywords}",
           attachments: [
             {
               fallback: "Successfully Added Image",
-              image_url: @reaction.image_url
+              image_url: url
             }
           ]
         }.to_json

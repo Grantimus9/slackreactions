@@ -2,6 +2,8 @@
 
 ## Introduction
 
+(Don't use yet - still smoothing out a few features! (28 Nov. 2015))
+
 This is a small app that lets your Slack team curate your own library of gifs and photos to insert into your conversations
 similar to using the slashie command /giphy. It was originally made because it was more fun than studying for my law school finals.
 
@@ -59,4 +61,4 @@ Note: The app will fail to even start if it's missing a required ENV var. Make s
 
 Your team visits the app you just setup, logs in, and can upload a gif or other image either from their computer or from a URL (`carrierwave` handles this). It's saved to your S3 Bucket, and the uploader can supply text keywords that they want to associate with that image.  
 
-When someone invokes your /r command, Slack POSTs a payload to the /incoming route, handled by slack_controller#incoming. It uses the text field as the search term, and searches the Reaction model using the `pg_search` gem. If it finds several matches, it'll choose a random one from the set of matches and return it to Slack. If it finds no matches, it'll return a message only you can see that simply says no match. 
+When someone invokes your /r command, Slack POSTs a payload to the /incoming route, handled by slack_controller#incoming. It uses the text field as the search term, and searches the Reaction model using the `pg_search` gem. If it finds several matches, it'll choose a random one from the set of matches and return it to Slack. If it finds no matches, it'll return a message only you can see that simply says no match.
