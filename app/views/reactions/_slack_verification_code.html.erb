@@ -7,9 +7,13 @@
   </div>
 <% else %>
   <div class="row">
-    To Add A GIF Without Leaving Slack, use the "add" keyword: <br>
-    Just type "/r add url_of_the_image word word word" and it will automatically add it to your collection
-    with the keywords after the URL.<br>
-    <%= image_tag("add_code_instructions.png", width:"600") %><br>
+    To Add A GIF Without Leaving Slack, use the "add" keyword:<br>
+
+      Just type "/r add url_of_the_image word word word" and it will automatically add it to your collection
+      with the keywords after the URL.<br>
+      <%= image_tag("add_code_instructions.png", width:"600") %><br>
+      You'll get instant confirmation that the bot is trying to add it to our library: <br>
+      <%= image_tag("add_code_success.png", width:"400") %>
+
   </div>
 <% end %>
