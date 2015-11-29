@@ -53,7 +53,7 @@ Note: The app will fail to even start if it's missing a required ENV var. Make s
 
 1. Google's Authentication: Using Google's developer's console, add your app's URL as valid JS request origins and callback URIs for the OATH Authentication Flow.
 
-2. S3: You will need to create an Amazon S3 Bucket by logging into your Amazon account and creating and S3 bucket. Make sure that the Amazon ID and Amazon Secret you are using correspond with an Amazon user that has a police of "S3 Full Read Write Access." This can be done using the Amazon IAM user management by creating a new user, assigning the policy to the user, and then getting that user's keys for this app.
+2. S3: You will need to create an Amazon S3 Bucket by logging into your Amazon account and creating an S3 bucket. Make sure that the Amazon ID and Amazon Secret you are using correspond with an Amazon user that has a policy of "S3 Full Read Write Access." This can be done using the Amazon IAM user management by creating a new user, assigning the policy to the user, and then getting that user's keys for this app.
 
 3. Slack: You'll need to add a custom slash Command, such as "/r" so that when you type in "/r WOW" it will POST to this reactions app. Add a slash command here (and note the TOKEN): https://yourdomain.slack.com/services/new/slash-commands.
 
