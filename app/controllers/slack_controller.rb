@@ -28,7 +28,7 @@ class SlackController < ApplicationController
       # Make sure user has an account with the app already, and that the app knows which account the params[:user_name] is associated with.
       @user = User.find_by(slack_user_name: params[:user_name])
       if !@user || @user.slack_user_name.empty?
-        render text: "You need to first send your confirm code. Visit #{request.base_url} and check the bottom of the screen for instructions."
+        render text: "You need to first send your confirm code. Visit <#{request.base_url}> and check the bottom of the screen for instructions."
         return
       end
 
@@ -39,6 +39,8 @@ class SlackController < ApplicationController
 
       # Optimistically respond with a message saying it will probably get done.
       render json: {
+        username: "Reaction Bot",
+        icon_emoji: ":simple_smile:",
         text: "Adding image with keywords: #{keywords}",
         attachments: [
           {
@@ -78,6 +80,8 @@ class SlackController < ApplicationController
       if @response
         # Reply with basic JSON.
         render json: {
+          username: "Reaction Bot",
+          icon_emoji: ":simple_smile:",
           response_type: "in_channel",
           attachments: [
             {
@@ -87,7 +91,7 @@ class SlackController < ApplicationController
           ]
         }.to_json
       else
-        render text: "No Match. Try adding one: #{request.base_url}"
+        render text: "No Match. Try adding one: <#{request.base_url}>"
       end
 
       # Log the request and whether it worked out.
