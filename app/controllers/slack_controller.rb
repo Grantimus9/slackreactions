@@ -38,24 +38,25 @@ class SlackController < ApplicationController
       keywords = text.sub(url, "").strip # grab everything after the URL and remove preceding/trailing spaces
 
       # Optimistically respond with a message saying it will probably get done.
-      render json: {
-        username: "Reaction Bot",
-        icon_emoji: ":simple_smile:",
-        text: "Adding image with keywords: #{keywords} \n If you do not see the image here it won't succeed. Make sure \n you supplied a URL directly to the image, not a webpage.",
-        attachments: [
-          {
-            fallback: "Image to Add",
-            image_url: url
-          }
-        ]
-      }.to_json
+        render json: {
+          username: "Reaction Bot",
+          icon_emoji: ":simple_smile:",
+          text: "Adding image with keywords: #{keywords} \n If you do not see the image here it won't succeed. Make sure \n you supplied a URL directly to the image, not a webpage.",
+          attachments: [
+            {
+              fallback: "Image to Add",
+              image_url: url
+            }
+          ]
+        }.to_json
 
       # Attempt to save the reaction to the database.
-      t = Thread.new {
+      t2 = Thread.new {
         @reaction = @user.reactions.new( keywords: keywords, remote_image_url: url )
         @reaction.save!
        }
-       t.join
+
+      [t2].join
 
     # Case: User is confirming their slack username by sending their @user.confirm_code with
     # the syntax '/r confirm myconfirmcode'
