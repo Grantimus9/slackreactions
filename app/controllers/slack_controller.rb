@@ -51,10 +51,11 @@ class SlackController < ApplicationController
       }.to_json
 
       # Attempt to save the reaction to the database.
-      Thread.new {
+      t = Thread.new {
         @reaction = @user.reactions.new( keywords: keywords, remote_image_url: url )
         @reaction.save!
        }
+       t.join
 
     # Case: User is confirming their slack username by sending their @user.confirm_code with
     # the syntax '/r confirm myconfirmcode'
