@@ -37,6 +37,7 @@ gem 'cancancan', '~> 1.10'
 gem 'fog'
 gem 'mini_magick'
 gem 'carrierwave'
+gem 'sidekiq' # For Background processing (and API generally, actually....)
 
 # Handles searching
 gem 'pg_search'
