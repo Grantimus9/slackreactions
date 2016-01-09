@@ -2,7 +2,7 @@
 
 ## Introduction
 
-(Don't use yet - still smoothing out a few features! (28 Nov. 2015))
+It works, but not well. 
 
 This is a small app that lets your Slack team curate your own library of gifs and photos to insert into your conversations
 similar to using the slashie command /giphy. It was originally made because it was more fun than studying for my law school finals.
